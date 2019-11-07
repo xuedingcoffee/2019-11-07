@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //call  bind  apply  是函数自带的方法，第一个参数都是改变this的方向的，以后的是参数。
+    // null，undefined（无效的）传了都是window
+
+
+    //     1.this是实例
+    //     2.默认return 实例，如果return为引用类型就为引用类型，如果为简单类型返回的就是实例。
+    //     3.实例的原型链 === 构造函数的原型
+    //     4.可以不加括号调用
+    
+//     function fn(name){
+//         this.name=name
+//     }
+
+//     let f=new fn('wan')
+//     //fn('wan')
+    
+//  // console.log(f.constructor)
+
+
+
+//   console.dir(f)
+
+
+  function fn(name){
+    this.name=name
+    console.log(this)
+  }
+
+
+    let f= New(fn,'123');   
+    console.log(f)    //fn无return  返回的默认就是实例
+   
+
+
+
+   function New(fn,...arg){
+      let obj=new Object  //创建一个实例  函数内的this指向的就是这个实例
+      //被调用的函数，无论是哪种返回值，都要被接收
+      let callback=fn.call(obj,...arg)//把构造函数的this改变成实例 
+       
+       if(callback!==null && typeof callback==='object' ||typeof callback==='function')
+   {
+     //callback 不是个对象 就是个function
+       return callback
+   }
+       return obj
+   
+   }
+
+
+
+
+  // function New (fn,...arg)
+  // {
+  //   let obj=new Object;
+  //   let callback=fn.call(obj,...arg)
+
+  //   obj.__proto__=fn.prototype
+
+  //   if(callback !==null&&typeof callback === 'object' || typeof callback === 'function')
+  //   {
+  //       return callback
+  //   }
+  //   return obj
+  // }
+    </script>
+</body>
+</html>

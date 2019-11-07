@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .active {
+            background: yellow;
+        }
+
+        #box div,
+        #box2 div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #000;
+            display: none;
+        }
+
+        #box div.show,
+        #box2 div.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <button class="active" index="0">按钮一</button>
+        <button index="1">按钮二</button>
+        <button index="2">按钮三</button>
+        <div class="show">11111</div>
+        <div>22222</div>
+        <div>33333</div>
+    </div>
+    <div id="box2">
+        <button class="active" index="0">按钮一</button>
+        <button index="1">按钮二</button>
+        <button index="2">按钮三</button>
+        <div class="show">11111</div>
+        <div>22222</div>
+        <div>33333</div>
+    </div>
+
+
+
+    <script>
+        //用面向对象来写
+
+        function tab(id) {
+            this.box = document.getElementById(id)
+            this.btns = this.box.querySelectorAll('button')
+            this.divs = this.box.querySelectorAll('div')
+            this.preindex = 0;
+
+        }
+
+        tab.prototype.events = function () {
+            const that = this
+            for (let i = 0, len = this.btns.length; i < len; i++) {
+                this.btns[i].onclick = function () {
+                    that.change(i)
+                    //为什么不用this????    实现切换，需要调用下面的方法，什么调用方法？是实例，所以把实例暂存给that
+                   //this.change(i)
+                }
+
+            }
+
+        }
+        tab.prototype.change = function (i) {
+            this.btns[this.preindex].className = ''
+            this.divs[this.preindex].className = ''
+            this.btns[i].className = 'active';
+            this.divs[i].className = 'show'
+            this.preindex = i;
+
+        }
+
+        let t = new tab('box');
+        t.events();
+
+      
+
+    </script>
+</body>
+
+</html>

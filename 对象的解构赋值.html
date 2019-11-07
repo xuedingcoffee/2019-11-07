@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    /*
+    在声明的时候使用块声明，块中放对象的key值，这里的key值要和解构对象的key值名字一致
+    如果要取别名，使用：新定义的名字即可
+
+    */
+
+    let objqwert={
+        name:'qwe',
+        age:18,
+        sex:'男',
+    }
+
+    let{name,age,sex}=objqwert;
+
+
+
+    console.dir(console)
+    let{log,dir}=console;
+
+
+    console.log((1,undefined,3).map((item='yes')=>item))
+
+
+
+    
+
+    </script>
+</body>
+</html>

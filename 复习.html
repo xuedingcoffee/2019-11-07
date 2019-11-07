@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*构造函数
+        this是实例
+        return的也是实例
+        类里面都是添加属性
+
+        new  构造函数
+
+        原型和原型链：
+        函数走原型
+        实例走原型链
+
+        实例的原型链===构造函数的原型
+
+        {name:'xxx'}->this.name='xxx'
+        obj->new fn()   obj.name=new fn().name
+
+        // obj.__proto__ -> Fn.prototype -> Fn.prototype.__proto__ -> Object.prototype
+    
+        */
+
+        function Fn() {}
+        Fn.prototype.a = function () { console.log('1'); }
+        Fn.a = function () { console.log('3'); }
+
+        Function.a = function () { console.log('4'); }
+        Function.prototype.a = function () { console.log(5) }
+        Object.a = function () { console.log('6') };
+        Object.prototype.a = function () { console.log('7') };
+        Fn.prototype.a = function () { console.log('2'); }
+        let f = new Fn();
+
+
+        Fn.prototype.a();//2
+        f.a();//2
+        Fn.a();//3
+        Function.a();//5
+        Object.a()//7
+
+        Function.prototype.a()//5
+        Fn.a();//3
+        console.log(f.a)//2
+
+
+
+
+
+
+
+        f.name = '郝永旺';
+        new Fn().name = 'xxx';
+
+
+
+
+    </script>
+</body>
+
+</html>
